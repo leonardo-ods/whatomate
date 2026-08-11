@@ -28,6 +28,14 @@ func NewS3Client(cfg *config.StorageConfig) (*S3Client, error) {
 		Region: cfg.S3Region,
 	}
 
+	if cfg.S3Endpoint != "" {
+		opts.BaseEndpoint = aws.String(cfg.S3Endpoint)
+	}
+
+	if cfg.S3UsePathStyle {
+		opts.UsePathStyle = true
+	}
+
 	if cfg.S3Key != "" && cfg.S3Secret != "" {
 		opts.Credentials = credentials.NewStaticCredentialsProvider(cfg.S3Key, cfg.S3Secret, "")
 	}
