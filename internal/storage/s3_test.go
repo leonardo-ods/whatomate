@@ -46,3 +46,34 @@ func TestNewS3Client_AcceptsStaticCredentials(t *testing.T) {
 	require.NoError(t, err)
 	assert.NotNil(t, c)
 }
+
+func TestNewS3Client_AcceptsCustomEndpoint(t *testing.T) {
+	c, err := storage.NewS3Client(&config.StorageConfig{
+		S3Bucket:   "b",
+		S3Region:   "auto",
+		S3Endpoint: "http://localhost:9000",
+	})
+	require.NoError(t, err)
+	assert.NotNil(t, c)
+}
+
+func TestNewS3Client_AcceptsPathStyle(t *testing.T) {
+	c, err := storage.NewS3Client(&config.StorageConfig{
+		S3Bucket:       "b",
+		S3Region:       "us-east-1",
+		S3UsePathStyle: true,
+	})
+	require.NoError(t, err)
+	assert.NotNil(t, c)
+}
+
+func TestNewS3Client_AcceptsCustomEndpointWithPathStyle(t *testing.T) {
+	c, err := storage.NewS3Client(&config.StorageConfig{
+		S3Bucket:       "b",
+		S3Region:       "auto",
+		S3Endpoint:     "http://localhost:9000",
+		S3UsePathStyle: true,
+	})
+	require.NoError(t, err)
+	assert.NotNil(t, c)
+}
