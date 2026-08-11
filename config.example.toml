@@ -50,7 +50,7 @@ s3_region = ""
 s3_key = ""
 s3_secret = ""
 s3_endpoint = ""  # Optional custom S3-compatible endpoint (e.g. Cloudflare R2, MinIO)
-s3_use_path_style = false  # Use path-style requests for S3-compatible providers
+s3_use_path_style = false  # Optional path-style requests for S3-compatible providers
 
 [whatsapp]
 webhook_verify_token = "random-string-change-this"
